@@ -13,6 +13,6 @@
   
 int base64_encode(char *output, char *input);
 
-int base64_decode(char * output, const char * input);
+int base64_decode(char * output, char * input);
 
 #endif // BASE64_H_ 

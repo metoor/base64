@@ -67,11 +67,11 @@ int base64_encode(char * output, char * input)
 
 	if (i3)
 	{
-		for (int i = i3; i < 3; i++) {
+		for (int i = i3; i < 3; ++i) {
 			a3[i] = '\0';
 		}
 		a3_to_a4(a4, a3);
-		for (unsigned int i = 0; i < i3 + 1; i++) {
+		for (unsigned int i = 0; i < i3 + 1; ++i) {
 			output[encodeLen++] = base64_alphabet[a4[i]];
 		}
 		while (i3++ < 3)
@@ -86,5 +86,55 @@ int base64_encode(char * output, char * input)
 
 int base64_decode(char * output, char * input)
 {
-	return 0;
+	unsigned decodeLen = 0;
+	unsigned i4 = 0;
+	unsigned inputLen = strlen(input);
+	unsigned len = inputLen;
+	unsigned char a4[4];
+	unsigned char a3[3];
+
+	while (len--)
+	{
+		if (input[inputLen - len - 1] == '=')
+		{
+			break;
+		}
+
+		a4[i4++] = input[inputLen - len - 1];
+		
+		if (i4 == 4)
+		{
+			for (int i = 0; i < 4; ++i) {
+				a4[i] = base64_char_index(a4[i]);
+			}
+
+			a4_to_a3(a3, a4);
+			for (int i = 0; i < 3; ++i)
+			{
+				output[decodeLen++] = a3[i];
+			}
+			i4 = 0;
+		}
+	}
+
+	if (i4)
+	{
+		for (int i = i4; i < 4; ++i) {
+			a4[i] = '\0';
+		}
+
+		for (int i = 0; i < 4; ++i) {
+			a4[i] = base64_char_index(a4[i]);
+		}
+
+		a4_to_a3(a3, a4);
+
+		for (int i = 0; i < 3; ++i) {
+			output[decodeLen++] = a3[i];
+		}
+	}
+
+	output[decodeLen] = '\0';
+
+	return decodeLen;
 }

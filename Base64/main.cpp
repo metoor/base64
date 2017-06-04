@@ -4,10 +4,14 @@
 int main()
 {
 	char src[] = "caiufen@qq.com";
-	char buffer[255];
-	base64_encode(buffer, src);
+	char bufferEn[255] = {0};
+	char bufferDe[255] = {0};
 
-	printf("%s\n", buffer);
+	base64_encode(bufferEn, src);
+	base64_decode(bufferDe,bufferEn);
+
+	printf("encode:%s\n", bufferEn);
+	printf("decode:%s\n", bufferDe);
 
 	return 0;
 }
