@@ -1,0 +1,21 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+/ShuihuStoryServer/Debug
+/Debug
+/ShuihuStoryServer.VC.db
+/ShuihuStoryServer.VC.VC.opendb
+/Base64/Debug
+/Base64.VC.VC.opendb
+/Base64.VC.db
+/.vs/Base64/v14
